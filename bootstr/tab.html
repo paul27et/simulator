@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+</head>
+<style>
+    #cube{
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        background-color: #002a80;
+        top: 500px;
+        left: 500px;
+    }
+    .follower{
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        background-color: #46a546;
+        top: 900px;
+        left: 100px;
+    }
+    #position{
+        position: absolute;
+        background-color: #555555;
+    }
+</style>
+<body>
+<div class="follower"></div>
+<div id="position"></div>
+<div id="cube"></div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var x, y;
+
+        function animate(opt){
+            var start = new Date;
+            var timer = setInterval(function(){
+                var progress = (new Date - start)/opt.duration;
+                if(progress > 1) progress = 1;
+                opt.step(progress);
+                if(progress == 1) clearInterval(timer);
+            }, opt.delay || 10);
+        }
+
+        $(document).mousemove(function(e){
+            $('#position').html("<strong>Позиция по оси X :</strong> " + e.pageX + " <br /> <strong>Позиция по оси Y :</strong>" + e.pageY);
+            x = e.pageX;
+            y = e.pageY;
+        });
+
+        $('#cube').draggable({
+            stop: function(event, ui){
+                $('#cube').animate({top : '900px'}, 1000);
+            }
+        });
+        $('.follower').droppable({
+            drop: function(event, ui){
+                $(this)
+                        .css({'background-color' : '#555555'})
+            }
+        });
+    });
+</script>
+</body>
+</html>
