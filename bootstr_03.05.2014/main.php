@@ -128,6 +128,7 @@ echo "Вы вошли на сайт, как ".$_SESSION['login'];
             <div class="span6">
                 <legend style="margin-bottom: 7px">Важная информация</legend>
                 <a href="#myModal" role="button" class="btn btn-info pull-right" data-toggle="modal">Правила и цели</a>
+                <button id="save" class="btn btn-info pull-right">Сохранить</button>
                 <p>День №: <output id="day">1</output></p>
             </div>
         </div>
